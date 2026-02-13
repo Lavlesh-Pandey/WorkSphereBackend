@@ -36,6 +36,4 @@ public class ResourceAllocationHistory {
     @Column(name = "returned_at")
     private LocalDateTime returnedAt;
 
-    @Column(name = "status")
-    private String status;
 }

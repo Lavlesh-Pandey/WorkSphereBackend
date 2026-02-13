@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.WorkSphere.WorkSphereBackend.entity.Users;
 
-public interface UserRepository extends JpaRepository<Users, Integer> {
+public interface UsersRepository extends JpaRepository<Users, Integer> {
 
     Optional<Users> findByEmail(String email);
-
+    
+    Optional<Users> findById(Integer id);
+    
     boolean existsByEmail(String email);
 }

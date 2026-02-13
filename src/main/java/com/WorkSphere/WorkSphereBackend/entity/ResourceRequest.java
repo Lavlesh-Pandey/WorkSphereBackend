@@ -3,6 +3,8 @@ package com.WorkSphere.WorkSphereBackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+
+import com.WorkSphere.WorkSphereBackend.enums.PriorityLevel;
 import com.WorkSphere.WorkSphereBackend.enums.RequestStatus;
 
 @Entity
@@ -34,8 +36,13 @@ public class ResourceRequest {
     private LocalDateTime requestDate;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "request_status")
+    private RequestStatus requestStatus;
+    
+    @Enumerated(EnumType.STRING)
     @Column(name = "priority_level")
-    private RequestStatus priorityLevel;
+    private PriorityLevel priorityLevel;
+
 
     @Column(name = "status")
     private String status;

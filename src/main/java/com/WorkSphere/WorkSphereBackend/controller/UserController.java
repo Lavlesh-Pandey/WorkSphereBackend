@@ -6,26 +6,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.WorkSphere.WorkSphereBackend.dto.UserDetailsdto;
+import com.WorkSphere.WorkSphereBackend.dto.UserDetailsDto;
 import com.WorkSphere.WorkSphereBackend.entity.Users;
 import com.WorkSphere.WorkSphereBackend.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/employee")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    // ✅ ADD USER
-    @PostMapping
-    public ResponseEntity<UserDetailsdto> addUser(@RequestBody Users users) {
-        System.out.println("post controller");
-        UserDetailsdto savedUser = userService.addUser(users);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
-    }
+//    // ✅ ADD USER
+//    @PostMapping
+//    public ResponseEntity<UserDetailsDto> addUser(@RequestBody Users users) {
+//        System.out.println("post controller");
+//        UserDetailsDto savedUser = userService.addUser(users);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+//    }
 
     // ✅ DELETE USER
     @DeleteMapping("/{id}")
@@ -37,26 +37,26 @@ public class UserController {
 
     // ✅ GET USER BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<UserDetailsdto> getUserById(@PathVariable Integer id) {
+    public ResponseEntity<UserDetailsDto> getUserById(@PathVariable Integer id) {
         System.out.println("get by id controller");
-        UserDetailsdto users = userService.getUserById(id);
+        UserDetailsDto users = userService.getUserById(id);
         return ResponseEntity.ok(users);
     }
 
     // ✅ GET ALL USERS
     @GetMapping
-    public ResponseEntity<List<UserDetailsdto>> getAllUsers() {
+    public ResponseEntity<List<UserDetailsDto>> getAllUsers() {
         System.out.println("get controller");
-        List<UserDetailsdto> usersList = userService.getAllUsers();
+        List<UserDetailsDto> usersList = userService.getAllUsers();
         return ResponseEntity.ok(usersList);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<UserDetailsdto> updateUser(
+    public ResponseEntity<UserDetailsDto> updateUser(
             @PathVariable Integer id,
             @RequestBody Users users) {
 
-        UserDetailsdto updatedUser = userService.updateUser(id, users);
+        UserDetailsDto updatedUser = userService.updateUser(id, users);
         return ResponseEntity.ok(updatedUser);
     }
     

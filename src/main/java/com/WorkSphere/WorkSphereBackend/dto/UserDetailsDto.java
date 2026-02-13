@@ -8,10 +8,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDetailsdto {
+public class UserDetailsDto {
 
     private Integer userId;
     private String name;
     private String email;
+    private String phone;
     private Role role;
 }
