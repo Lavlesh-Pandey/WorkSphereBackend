@@ -12,6 +12,7 @@ import com.WorkSphere.WorkSphereBackend.entity.ResourceRequest;
 import com.WorkSphere.WorkSphereBackend.entity.Resources;
 import com.WorkSphere.WorkSphereBackend.entity.Users;
 import com.WorkSphere.WorkSphereBackend.enums.PriorityLevel;
+import com.WorkSphere.WorkSphereBackend.mapper.ResourceRequestMapper;
 import com.WorkSphere.WorkSphereBackend.repository.NotificationRepository;
 import com.WorkSphere.WorkSphereBackend.repository.ResourceAllocationHistoryRepository;
 import com.WorkSphere.WorkSphereBackend.repository.ResourceRequestRepository;
@@ -30,6 +31,7 @@ public class ResourceRequestService {
     private final ResourcesRepository resourcesRepository;
     private final NotificationRepository notificationRepository;
     private final ResourceAllocationHistoryRepository resourceAllocationHistoryRepository;
+    private final ResourceRequestMapper resourceRequestMapper;
 
     public ResourceRequestResponseDTO createResourceRequest(String userEmail,
                                                  String resourceName,
@@ -72,8 +74,8 @@ public class ResourceRequestService {
 
 
         notificationRepository.save(notification);
-        return null;
-//        return savedRequest;
+
+        return resourceRequestMapper.toResourceRequestResponseDTO(savedRequest);
     }
     
     

@@ -17,7 +17,7 @@ import com.WorkSphere.WorkSphereBackend.service.ResourceRequestService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/resourceRequest")
+@RequestMapping("/api/resource-request")
 @RequiredArgsConstructor
 public class ResourceRequestController {
 
@@ -40,7 +40,7 @@ public class ResourceRequestController {
     // =====================================================
     // 2️⃣ ACCEPT REQUEST
     // =====================================================
-    @PutMapping("/accept/{requestId}")
+    @PutMapping("/approve/{requestId}")
     public String acceptRequest(@PathVariable Integer requestId) {
 
         resourceRequestService.acceptRequest(requestId);

@@ -13,22 +13,30 @@ import com.WorkSphere.WorkSphereBackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/employee")
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-//    // ✅ ADD USER
-//    @PostMapping
-//    public ResponseEntity<UserDetailsDto> addUser(@RequestBody Users users) {
-//        System.out.println("post controller");
-//        UserDetailsDto savedUser = userService.addUser(users);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
-//    }
+ // add user
+    @PostMapping("/register") 
+    public ResponseEntity<?> registerUser(@RequestBody Users user) {
+    	try {
+            UserDetailsDto savedUser = userService.addUser(user);
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(savedUser);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+    
 
     // ✅ DELETE USER
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete-user/{id}")
     public ResponseEntity<String> removeUser(@PathVariable Integer id) {
         System.out.println("delete controller");
         userService.removeUser(id);
@@ -36,7 +44,7 @@ public class UserController {
     }
 
     // ✅ GET USER BY ID
-    @GetMapping("/{id}")
+    @GetMapping("/get-user/{id}")
     public ResponseEntity<UserDetailsDto> getUserById(@PathVariable Integer id) {
         System.out.println("get by id controller");
         UserDetailsDto users = userService.getUserById(id);
@@ -44,14 +52,14 @@ public class UserController {
     }
 
     // ✅ GET ALL USERS
-    @GetMapping
+    @GetMapping("/get-users")
     public ResponseEntity<List<UserDetailsDto>> getAllUsers() {
         System.out.println("get controller");
         List<UserDetailsDto> usersList = userService.getAllUsers();
         return ResponseEntity.ok(usersList);
     }
     
-    @PutMapping("/{id}")
+    @PutMapping("/update-user/{id}")
     public ResponseEntity<UserDetailsDto> updateUser(
             @PathVariable Integer id,
             @RequestBody Users users) {
