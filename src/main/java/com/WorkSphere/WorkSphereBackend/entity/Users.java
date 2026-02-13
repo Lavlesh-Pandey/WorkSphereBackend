@@ -6,12 +6,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")   // maps to DB column
+    @Column(name = "user_id")
     private Integer userId;
 
     @Column(name = "name")
@@ -26,6 +26,4 @@ public class Users {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
-
-    public Users() {}
 }
