@@ -5,10 +5,10 @@ import com.WorkSphere.WorkSphereBackend.enums.PriorityLevel;
 import lombok.Data;
 
 @Data
-public class ResourceRequestDTO {
+public class ResourceRequestDto {
 
     private String userEmail;
-    private String resourceName;
+    private String resourceCategoryName;
     private String description;
     private PriorityLevel priority;
 }

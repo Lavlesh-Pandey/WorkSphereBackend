@@ -23,7 +23,10 @@ public class Resources {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private ResourceCategory category;
+
+    @Column(name = "occupied", nullable = false)
+    private Boolean occupied = false;
 }

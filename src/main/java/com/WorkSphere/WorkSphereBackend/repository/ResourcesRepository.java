@@ -7,4 +7,6 @@ public interface ResourcesRepository extends JpaRepository<Resources, Integer> {
 
     Resources findByResourceName(String resourceName);
 
+	Resources findFirstByCategoryCategoryIdAndOccupiedFalse(Integer categoryId);
+
 }

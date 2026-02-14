@@ -3,17 +3,18 @@ package com.WorkSphere.WorkSphereBackend.dto;
 import java.time.LocalDateTime;
 
 import com.WorkSphere.WorkSphereBackend.enums.PriorityLevel;
+import com.WorkSphere.WorkSphereBackend.enums.RequestStatus;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class ResourceRequestResponseDTO {
+public class ResourceRequestResponseDto {
 
     private Integer requestId;
-    private Integer resourceId;
+    private Integer resourceCategoryId;
     private LocalDateTime requestDate;
-    private String status;
+    private RequestStatus status;
     private PriorityLevel priority;
 }

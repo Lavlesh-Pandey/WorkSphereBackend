@@ -25,6 +25,6 @@ public interface ResourceAllocationHistoryRepository extends JpaRepository<Resou
            WHERE rah.id = :id
            """)
     void updateReturnTime(@Param("id") Integer id,
-                          @Param("returnedAt") LocalDateTime returnTime);
+                          @Param("returnTime") LocalDateTime returnTime);
 
 }

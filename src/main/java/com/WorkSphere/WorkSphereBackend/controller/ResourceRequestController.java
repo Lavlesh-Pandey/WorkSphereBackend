@@ -1,17 +1,18 @@
 package com.WorkSphere.WorkSphereBackend.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.WorkSphere.WorkSphereBackend.dto.ResourceRequestDTO;
-import com.WorkSphere.WorkSphereBackend.dto.ResourceRequestResponseDTO;
-import com.WorkSphere.WorkSphereBackend.entity.ResourceRequest;
-import com.WorkSphere.WorkSphereBackend.enums.PriorityLevel;
+import com.WorkSphere.WorkSphereBackend.dto.ResourceRequestDto;
+import com.WorkSphere.WorkSphereBackend.dto.ResourceRequestResponseDto;
+import com.WorkSphere.WorkSphereBackend.dto.PendingRequestDto;
 import com.WorkSphere.WorkSphereBackend.service.ResourceRequestService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,11 +28,11 @@ public class ResourceRequestController {
     // 1️⃣ CREATE REQUEST
     // =====================================================
     @PostMapping("/create")
-    public ResourceRequestResponseDTO createRequest( @RequestBody ResourceRequestDTO request) {
+    public ResourceRequestResponseDto createRequest( @RequestBody ResourceRequestDto request) {
 
         return resourceRequestService.createResourceRequest(
                 request.getUserEmail(),
-                request.getResourceName(),
+                request.getResourceCategoryName(),
                 request.getDescription(),
                 request.getPriority()
         );
@@ -65,5 +66,11 @@ public class ResourceRequestController {
 
         resourceRequestService.returnResource(requestId);
         return "Resource returned successfully";
+    }
+    
+    @GetMapping("/pending")
+    public List<PendingRequestDto> getPendingRequests() {
+
+        return resourceRequestService.getAllPendingRequests();
     }
 }

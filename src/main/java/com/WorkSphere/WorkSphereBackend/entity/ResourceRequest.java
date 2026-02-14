@@ -29,6 +29,10 @@ public class ResourceRequest {
     @JoinColumn(name = "resource_id")
     private Resources resource;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private ResourceCategory category;
+
     @Column(name = "request_description")
     private String requestDescription;
 
@@ -38,12 +42,8 @@ public class ResourceRequest {
     @Enumerated(EnumType.STRING)
     @Column(name = "request_status")
     private RequestStatus requestStatus;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "priority_level")
     private PriorityLevel priorityLevel;
-
-
-    @Column(name = "status")
-    private String status;
 }

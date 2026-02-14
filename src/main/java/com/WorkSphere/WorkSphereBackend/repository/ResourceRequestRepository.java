@@ -16,8 +16,6 @@ public interface ResourceRequestRepository extends JpaRepository<ResourceRequest
 
     List<ResourceRequest> findByUser(Users user);
 
-    List<ResourceRequest> findByStatus(String status);
-
 	@Modifying
     @Transactional
     @Query("""
@@ -39,5 +37,19 @@ public interface ResourceRequestRepository extends JpaRepository<ResourceRequest
            AND rr.requestStatus = com.WorkSphere.WorkSphereBackend.enums.RequestStatus.AWAITED
            """)
     void updateAwaitedToApplied(@Param("resourceId") Integer resourceId);
+	
+	@Query("""
+		       SELECT r FROM ResourceRequest r
+		       WHERE r.requestStatus = 'APPLIED'
+		       ORDER BY 
+		           CASE r.priorityLevel
+		               WHEN 'HIGH' THEN 1
+		               WHEN 'MEDIUM' THEN 2
+		               WHEN 'LOW' THEN 3
+		           END,
+		           r.requestDate ASC
+		       """)
+		List<ResourceRequest> findAllPendingOrdered();
+
 
 }

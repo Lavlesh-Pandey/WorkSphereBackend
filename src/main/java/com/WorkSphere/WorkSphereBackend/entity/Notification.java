@@ -1,5 +1,7 @@
 package com.WorkSphere.WorkSphereBackend.entity;
 
+import com.WorkSphere.WorkSphereBackend.enums.Role;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,10 +23,6 @@ public class Notification {
     @JoinColumn(name = "user_id")
     private Users user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resource_id")
-    private Resources resource;
-
     @Column(name = "message")
     private String message;
 
@@ -32,5 +30,5 @@ public class Notification {
     private Boolean isread;
 
     @Column(name = "role")
-    private String role;
+    private Role role;
 }
